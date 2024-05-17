@@ -1,0 +1,43 @@
+﻿@model IList<RiverStationWatch.Data.Model.Station>
+
+@if (Model != null && Model.Any())
+{
+    <h4>Search results:</h4><br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Station Name</th>
+                <th>Timeout (minutes)</th>
+                <th>Drought Level</th>
+                <th>Flood Level</th>
+                <th>Report Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var station in Model)
+            {
+                <tr>
+                    <td>@station.StationName</td>
+                    <td>@station.TimeOutInMinutes</td>
+                    <td>@station.DroughtLevel</td>
+                    <td>@station.FloodLevel</td>
+                    <td>@station.ReportEmail</td>
+                    <td>
+@*                         <a asp-page="./Edit" asp-route-id="@station.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@station.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@station.Id">Delete</a> *@
+
+                        <button class="btn btn-primary" onclick="location.href='@Url.Page("./Edit", new { id = station.Id })'">Edit</button>
+                        <button class="btn btn-secondary" onclick="location.href='@Url.Page("./Details", new { id = station.Id })'">Details</button>
+                        <button class="btn btn-danger" onclick="location.href='@Url.Page("./Delete", new { id = station.Id })'">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No stations found.</p>
+}

@@ -1,0 +1,280 @@
+﻿@page
+@model RiverStationWatch.Pages.StationRecordPages.StationRecordListModel
+
+@{
+    ViewData["Title"] = "Records List";
+}
+
+<h1>Water level records</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Include SweetAlert2 library -->
+<!-- Flood level exceedance check, special alert -->
+@if(Model.IsFloodLevelExceeded)
+{
+    <script>
+        var stationsWithExceededFloodLevel = @Html.Raw(Json.Serialize(ViewData["StationsWithExceededFloodLevel"]));
+        var stationNamesString = stationsWithExceededFloodLevel.join(', ');
+
+        // Function to show SweetAlert2 alert
+        function showFloodAlert(stationNamesString) {
+            // Define the content of the alert
+            const alertContent = `
+                <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWd4cjVoZnJuNTR4ZHh6czJtaHRmNXR6M2xwa2wxMXFvMTF0MmljayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/T5EvkraNwauGA9pb8z/giphy.gif" alt="Flood Alert"><br>
+                <span style="font-size: 18px;">Flood level exceeded at the following stations: ${stationNamesString}</span>
+            `;
+
+            // Show the alert using SweetAlert2
+            Swal.fire({
+                title: '',
+                html: alertContent,
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            });
+        }
+
+        // Show the SweetAlert2 alert
+        showFloodAlert(stationNamesString);
+    </script>
+}
+
+<!-- Search bar for searching in the stations -->
+<label>Search records:</label><br>
+<input type="text" id="searchInput" placeholder="Search.." name="search" oninput="searchRecords()">
+<hr/>
+
+<div id="searchResults" class="table-responsive">
+    <!-- Place for search results -->
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <label>Auto reloading</label><input type="checkbox" id="reloadCheck" checked>
+            <tr>
+                <th><button onclick="sortTable(0, false);">Station ▼</button></th>
+                <th><button onclick="sortTable(1, false);">Timestamp ▼</button></th>
+                <th><button onclick="sortTable(2, true);">Value ▼</button></th>
+                <th><label>Action:</label></th> <!-- Column for the delete button -->
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var recordsOrderedByPriority = Model.RecordList
+                    .OrderByDescending(i => i.Station.FloodLevel > i.Value)
+                    .ThenByDescending(i => i.Station.FloodLevel)
+                    .ThenByDescending(i => i.TimeStamp);
+            }
+            @foreach (var item in recordsOrderedByPriority)
+            {
+                var riverName = item.Station?.StationName ?? "Unknown"; // Default to "Unknown" if River is null
+                var floodWarningValue = item.Station?.FloodLevel ?? 0;
+                var droughtWarningValue = item.Station?.DroughtLevel ?? 0;
+                var value = item.Value;
+
+                // Determine the background color based on the value
+                string bgColor = "";
+                if (value > floodWarningValue)
+                {
+                    bgColor = "rgba(255, 0, 0, 0.3)"; // Red with transparency
+                }
+                else if (value < droughtWarningValue)
+                {
+                    bgColor = "rgba(255, 165, 0, 0.3)"; // Orange with transparency
+                }
+                else
+                {
+                    bgColor = "rgba(0, 128, 0, 0.3)"; // Green with transparency
+                }
+            <tr id="record-@item.Id" style="background-color: @bgColor;">
+                <td>@riverName</td>
+                <td>@item.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>@value</td>
+                <td>
+                    <button onclick="deleteRecord('@item.Id')" class="btn btn-danger" id="deleteBtn" style="color=white; background-color=red;">Delete</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Load more records -->
+<div id="loadMoreButtonContainer">
+    <button onclick="loadMoreRecords()" id="loadMoreBtn" class="btn btn-primary">Load More Records</button>
+</div>
+
+@section Scripts
+{
+<script>
+    // Function to sort table rows by column index and toggle between ascending and descending order
+    function sortTable(columnIndex, descending) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.querySelector('.table');
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[columnIndex]; // Get the cell value
+                y = rows[i + 1].getElementsByTagName("TD")[columnIndex]; // Get the cell value of the next row
+                if (columnIndex === 1) { // Timestamp column
+                    if (descending) {
+                        if (new Date(x.innerHTML) < new Date(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (new Date(x.innerHTML) > new Date(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                } else if (columnIndex === 2) { // Value column
+                    if (descending) {
+                        if (parseFloat(x.textContent) < parseFloat(y.textContent)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (parseFloat(x.textContent) > parseFloat(y.textContent)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                } else { // Default sorting (text columns)
+                    if (descending) {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+        // Save sorting settings to localStorage
+        localStorage.setItem('sortingColumnIndex', columnIndex);
+        localStorage.setItem('descending', descending);
+    }
+
+    // Function for turning on and off, auto reloading
+    function autoReload() {
+        let checkBox = document.getElementById("reloadCheck");
+        setInterval(function () {
+            if (checkBox.checked == true) {
+                location.reload();
+            }
+        }, 10000);
+    }
+
+    autoReload();
+
+    // Function to retrieve sorting settings from localStorage and apply sorting
+    function applySortingFromLocalStorage() {
+        var columnIndex = parseInt(localStorage.getItem('sortingColumnIndex')) || 0;
+        var descending = localStorage.getItem('descending') === 'true';
+        sortTable(columnIndex, descending);
+    }
+
+    // Use window.addEventListener to avoid overriding other onload events
+    window.addEventListener('load', applySortingFromLocalStorage);
+
+    // Delete record function
+    function deleteRecord(recordId) {
+        // Get the CSRF token from the page
+        var token = $('input[name="__RequestVerificationToken"]').val();
+
+        if (confirm("Are you sure you want to delete this record?")) {
+            // Send the AJAX request to delete the record
+            $.ajax({
+                type: 'POST',
+                url: '/StationRecordPages/StationRecordList?handler=DeleteRecord&id=' + recordId,
+                headers: {
+                    RequestVerificationToken: token // Include the CSRF token in the request headers
+                },
+                success: function (response) {
+                    // Remove the table row from the HTML
+                    $('#record-' + recordId).remove();
+                    alert('Record deleted.');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error occurred while deleting the record:', error);
+                }
+            });
+        }
+    }
+
+    // Searching records (real-time search)
+    function searchRecords() {
+        var searchInput = document.getElementById("searchInput").value;
+        var token = $('input[name="__RequestVerificationToken"]').val(); // Get the CSRF token from the page
+        $.ajax({
+            type: "POST",
+            url: "/StationRecordPages/StationRecordList?handler=Search",
+            data: { search: searchInput },
+            headers: {
+                RequestVerificationToken: token // Include the CSRF token in the request headers
+            },
+            success: function (response) {
+                $("#searchResults").html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error("Error occurred while searching:", xhr.responseText);
+            }
+        });
+    }
+
+    // Load more records to the page
+    function loadMoreRecords() {
+        var offset = $('.table tbody tr').length; // Calculate the current number of records displayed
+        var token = $('input[name="__RequestVerificationToken"]').val(); // Get the CSRF token from the page
+        $.ajax({
+            type: "GET",
+            url: "/StationRecordPages/StationRecordList?handler=LoadMore",
+            data: { offset: offset },
+            headers: {
+                RequestVerificationToken: token // Include the CSRF token in the request headers
+            },
+            success: function (response) {
+                $('#loadMoreButtonContainer').before(response); // Append the new records to the table
+            },
+            error: function (xhr, status, error) {
+                console.error("Error occurred while loading more records:", xhr.responseText);
+            }
+        });
+    }
+</script>
+}
+
+<style>
+    .searchBtn button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .searchBtn button:hover {
+        background: #ccc;
+    }
+
+    #loadMoreButtonContainer {
+        position: relative;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>

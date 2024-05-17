@@ -1,0 +1,94 @@
+﻿@page
+@model RiverStationWatch.Pages.Config.CreateNewTokenModel
+
+@{
+    ViewData["Title"] = "CreateNewToken";
+}
+
+<h1>Create New Token</h1>
+
+
+<h4>Current Token</h4>
+<div class="row">
+    <div class="col-md-4">
+        <input id="currentToken" type="text" class="form-control" readonly value="@Model.CurrentToken" />
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ApiToken.Token" class="control-label">New token</label>
+                <input id="tokenInput" asp-for="ApiToken.Token" class="form-control"/>
+                <button type="button" id="generateTkn">Generate token</button>
+                <button onclick="toClip()" type="button" id="copyToClip">Copy token to clipboard</button>
+                <span asp-validation-for="ApiToken.Token" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApiToken.Validity" class="control-label"></label>
+                <input asp-for="ApiToken.Validity" class="form-control" />
+                <span asp-validation-for="ApiToken.Validity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success" role="alert">
+        @Model.SuccessMessage
+    </div>
+}
+
+<div>
+    <a asp-page="/Config/Configuration">Back to Configuration mainpage</a>
+</div>
+
+@functions{
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $("#generateTkn").click(function () {
+            // Get the CSRF token from the page
+            var token = $('input[name="__RequestVerificationToken"]').val();
+
+            // AJAX request to the Razor Page handler method to get the new token
+            $.ajax({
+                type: 'POST',
+                url: '/Config/CreateNewToken?handler=GetNewToken',
+                headers: {
+                    RequestVerificationToken: token // Include the CSRF token in the request headers
+                },
+                success: function (response) {
+                    $("#tokenInput").val(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error occurred while fetching the token:', error);
+                }
+            });
+        });
+
+        // Copy token string to clipboard function
+        function toClip()
+        {
+              // Get the text field
+            var copyText = document.getElementById("tokenInput");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+        }
+    </script>
+}

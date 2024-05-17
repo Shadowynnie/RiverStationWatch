@@ -1,0 +1,48 @@
+﻿@page
+@model RiverStationWatch.Pages.Config.SmtpConfigModel
+
+@{
+    ViewData["Title"] = "SmtpConfig";
+}
+
+<h1>SMTP Configuration</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SmtpConfig.SmtpServer" class="control-label">SMTP server</label>
+                <input asp-for="SmtpConfig.SmtpServer" class="form-control" />
+                <span asp-validation-for="SmtpConfig.SmtpServer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SmtpConfig.Port" class="control-label"></label>
+                <input asp-for="SmtpConfig.Port" class="form-control" />
+                <span asp-validation-for="SmtpConfig.Port" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SmtpConfig.Username" class="control-label"></label>
+                <input asp-for="SmtpConfig.Username" class="form-control" />
+                <span asp-validation-for="SmtpConfig.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SmtpConfig.Password" class="control-label"></label>
+                <input asp-for="SmtpConfig.Password" class="form-control" />
+                <span asp-validation-for="SmtpConfig.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Config/Configuration">Back to Configuration mainpage</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,54 @@
+﻿@page
+@model RiverStationWatch.Pages.StationPages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit station</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Station.Id" />
+            <div class="form-group">
+                <label asp-for="Station.StationName" class="control-label">Station name</label>
+                <input asp-for="Station.StationName" class="form-control" />
+                <span asp-validation-for="Station.StationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.TimeOutInMinutes" class="control-label">Time-out in minutes</label>
+                <input asp-for="Station.TimeOutInMinutes" class="form-control" />
+                <span asp-validation-for="Station.TimeOutInMinutes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.DroughtLevel" class="control-label">Drought level</label>
+                <input asp-for="Station.DroughtLevel" class="form-control" />
+                <span asp-validation-for="Station.DroughtLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.FloodLevel" class="control-label">Flood level</label>
+                <input asp-for="Station.FloodLevel" class="form-control" />
+                <span asp-validation-for="Station.FloodLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Station.ReportEmail" class="control-label">Report email</label>
+                <input asp-for="Station.ReportEmail" class="form-control" />
+                <span asp-validation-for="Station.ReportEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

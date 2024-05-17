@@ -1,0 +1,29 @@
+﻿@model IList<RiverStationWatch.Data.Model.Record>
+
+<h4>Search results:</h4><br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Station</th>
+            <th>Timestamp</th>
+            <th>Value</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var riverName = item.Station?.StationName ?? "Unknown";
+            var timeStamp = item.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss");
+            var value = item.Value;
+            <tr>
+                <td>@riverName</td>
+                <td>@timeStamp</td>
+                <td>@value</td>
+                <td>
+                    <button onclick="deleteRecord('@item.Id')" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

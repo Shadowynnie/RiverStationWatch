@@ -1,0 +1,18 @@
+﻿@page
+@model RiverStationWatch.Pages.Config.ConfigurationModel
+@{
+}
+<h1>Configuration</h1>
+
+<!-- Link to CreateNewToken page -->
+<a id=tkn asp-page="./CreateNewToken">Generate New Token</a>
+<br>
+<a id=smtp asp-page="./SmtpConfig">SMTP Settings</a>
+
+<style>
+    #tkn, #smtp
+    {
+        font-weight: bold;
+        font-size: 16px;
+    }
+</style>

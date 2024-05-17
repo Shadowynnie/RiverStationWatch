@@ -1,0 +1,151 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RiverStationWatch
+build_property.RootNamespace = RiverStationWatch
+build_property.ProjectDir = C:\Users\jiri\Desktop\Programování_V_Aplikacích_12.02.2024_Visual + API\RiverStationWatch\RiverStationWatch\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\jiri\Desktop\Programování_V_Aplikacích_12.02.2024_Visual + API\RiverStationWatch\RiverStationWatch
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Config/Configuration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlnXENvbmZpZ3VyYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Config/CreateNewToken.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlnXENyZWF0ZU5ld1Rva2VuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Config/SmtpConfig.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlnXFNtdHBDb25maWcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/HangFire.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGFuZ0ZpcmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/SendMail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VuZE1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Shared/_MoreRecordsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Nb3JlUmVjb3Jkc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Shared/_SearchRecordsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TZWFyY2hSZWNvcmRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Shared/_SearchStationsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TZWFyY2hTdGF0aW9uc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationPages/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblBhZ2VzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationPages/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblBhZ2VzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationPages/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblBhZ2VzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationPages/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblBhZ2VzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationPages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblBhZ2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationRecordPages/RecordChart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblJlY29yZFBhZ2VzXFJlY29yZENoYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/StationRecordPages/StationRecordList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhdGlvblJlY29yZFBhZ2VzXFN0YXRpb25SZWNvcmRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jiri/Desktop/Programování_V_Aplikacích_12.02.2024_Visual + API/RiverStationWatch/RiverStationWatch/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ix2i33k4hy

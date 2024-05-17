@@ -1,0 +1,103 @@
+﻿@page
+@model RiverStationWatch.Pages.StationPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Active stations</h1>
+
+<p>
+    <!-- <a asp-page="Create">Create New</a> -->
+    <button class="btn btn-success" onclick="location.href='@Url.Page("Create")'">Create New</button>
+</p>
+
+<!-- Search bar for searching in the stations-->
+    <label>Search stations:</label><br><input type="text" id="searchInput" placeholder="Search.." name="search" oninput="searchStations()">
+<hr/>
+
+<div id="searchResults" class="table-responsive">
+    <!-- Place for search results -->
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Station name
+                @* @Html.DisplayNameFor(model => model.Station[0].StationName) *@
+            </th>
+            <th>
+                Time-out in minutes
+                @* @Html.DisplayNameFor(model => model.Station[0].TimeOutInMinutes) *@
+            </th>
+            <th>
+                Drought level
+                @* @Html.DisplayNameFor(model => model.Station[0].DroughtLevel) *@
+            </th>
+            <th>
+                Flood level
+                @* @Html.DisplayNameFor(model => model.Station[0].FloodLevel) *@
+            </th>
+            <th>
+                Report Email
+                @* @Html.DisplayNameFor(model => model.Station[0].ReportEmail) *@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Station) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOutInMinutes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DroughtLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FloodLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportEmail)
+            </td>
+            <td>
+@*                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> *@
+
+                <button class="btn btn-primary" onclick="location.href='@Url.Page("./Edit", new { id = item.Id })'">Edit</button>
+                <button class="btn btn-secondary" onclick="location.href='@Url.Page("./Details", new { id = item.Id })'">Details</button>
+                <button class="btn btn-danger" onclick="location.href='@Url.Page("./Delete", new { id = item.Id })'">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    function searchStations() 
+{
+    var searchInput = document.getElementById("searchInput").value;
+    var token = $('input[name="__RequestVerificationToken"]').val(); // Get the CSRF token from the page
+    $.ajax({
+        type: "POST",
+        url: "/StationPages/Index?handler=Search",
+        data: { search: searchInput },
+        headers: {
+            RequestVerificationToken: token // Include the CSRF token in the request headers
+        },
+        success: function(response) {
+            $("#searchResults").html(response);
+        },
+        error: function(xhr, status, error) 
+        {
+            console.error("Error occurred while searching:", xhr.responseText);
+        }
+
+    });
+}
+</script>

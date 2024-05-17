@@ -1,0 +1,39 @@
+﻿@model IList<RiverStationWatch.Data.Model.Record>
+
+<table class="table table-striped">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var riverName = item.Station?.StationName ?? "Unknown";
+            var timeStamp = item.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss");
+            var value = item.Value;
+
+            // Determine the background color based on the value
+            string bgColor = "";
+            var floodWarningValue = item.Station?.FloodLevel ?? 0;
+            var droughtWarningValue = item.Station?.DroughtLevel ?? 0;
+
+            if (value > floodWarningValue)
+            {
+                bgColor = "rgba(255, 0, 0, 0.3)"; // Red with transparency
+            }
+            else if (value < droughtWarningValue)
+            {
+                bgColor = "rgba(255, 165, 0, 0.3)"; // Orange with transparency
+            }
+            else
+            {
+                bgColor = "rgba(0, 128, 0, 0.3)"; // Green with transparency
+            }
+
+            <tr style="background-color: @bgColor;">
+                <td>@riverName</td>
+                <td>@timeStamp</td>
+                <td>@value</td>
+                <td>
+                    <button onclick="deleteRecord('@item.Id')" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

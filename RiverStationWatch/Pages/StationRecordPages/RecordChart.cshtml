@@ -1,0 +1,112 @@
+﻿@page
+@model StationRecordPages.RecordChartModel
+@{
+    ViewData["Title"] = "Record Chart";
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<select id="stationDropdown">
+    @foreach (var station in Model.Stations)
+    {
+        <option value="@station.Id">@station.StationName</option>
+    }
+</select>
+<br>
+<label>Auto reloading</label><input type="checkbox" id="reloadCheck" unchecked>
+
+@{
+    var selectedStationId = Model.StationId ?? Model.Stations.FirstOrDefault()?.Id;
+    var selectedStation = Model.Stations.FirstOrDefault(s => s.Id == selectedStationId);
+    var stationName = selectedStation != null ? selectedStation.StationName : "No Station Selected";
+}
+
+<canvas id="recordChart" width="400" height="200"></canvas>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('recordChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.TimeStamps.Select(ts => ts.ToString("yyyy-MM-ddTHH:mm:ss")))),
+                datasets: [{
+                    label: 'Water Level',
+                    data: @Html.Raw(Json.Serialize(Model.WaterLevels)),
+                    borderColor: 'blue',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                plugins: 
+                {
+                    title: {
+                        display: true,
+                        text: '@Html.Raw(stationName)',
+                        font: {size: 20}
+                    }
+                },
+
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                            displayFormats: {
+                                day: 'yyyy-MM-ddTHH:mm:ss'
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Timestamp'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Water Level'
+                        }
+                    }]
+                }
+            }
+        });
+
+        document.getElementById('stationDropdown').addEventListener('change', function() {
+            var selectedStationId = this.value;
+            window.location.href = '/StationRecordPages/RecordChart?stationId=' + selectedStationId;
+        });
+
+
+        //================================================================================
+        document.addEventListener("DOMContentLoaded", function () 
+        {
+            var dropdown = document.getElementById("stationDropdown");
+            var selectedStationId = @Json.Serialize(selectedStationId);
+            if (selectedStationId) 
+            {
+                dropdown.value = selectedStationId.toString();
+            }
+        });
+
+
+    // Function for turning on and off, auto reloading
+    function autoReload()
+    {
+        let checkBox = document.getElementById("reloadCheck");
+            setInterval(function () 
+            {
+                if(checkBox.checked == true)
+                {
+                    location.reload();
+                }
+                
+            }, 5000);
+    }
+
+    autoReload();
+    </script>
+}
